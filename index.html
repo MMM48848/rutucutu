@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Rutu <3</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f0f0f0;
+    }
+    .container {
+        text-align: center;
+    }
+    img {
+        /* Set a fixed width and height for all images */
+        width: 480px;
+        height: 480px;
+        height: auto;
+    }
+    .red-text {
+        color: red;
+    }
+    #poem {
+        display: none;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 20px;
+        line-height: 1.5;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <select id="qualitySelect">
+        <option value="144p" selected>144p</option>
+        <option value="240p">240p</option>
+        <option value="480p">480p</option>
+        <option value="720p">720p</option>
+        <option value="1080p">1080p</option>
+    </select>
+    <br><br>
+    <div id="moonInfo">
+        <img id="moonImage" src="144p.jpeg" alt="Moon Image">
+        <h1 id="poem">
+            <span class="red-text">My moon >>>>>>>>>> any other moon</span><br>
+            <br>
+            With you Rutu, my heart finds its beam,<br>
+            Your presence, a dream beyond any scheme.<br>
+            Wrapped in your glow, my heart finds its tune,<br>
+            For you are my moon, you are my moon.
+        </h1>
+    </div>
+</div>
+
+<script>
+    const qualitySelect = document.getElementById("qualitySelect");
+    const moonImage = document.getElementById("moonImage");
+    const poem = document.getElementById("poem");
+
+    qualitySelect.addEventListener("change", function() {
+        const selectedOption = qualitySelect.value;
+        const imageUrl = getImageUrl(selectedOption);
+        if (selectedOption === "1080p") {
+            poem.style.display = "block";
+        } else {
+            poem.style.display = "none";
+        }
+        moonImage.src = imageUrl;
+    });
+
+    function getImageUrl(quality) {
+        if (quality == "1080p"){
+            return "rutu.jpg"
+        }
+        else{
+            return quality + ".jpeg";
+        }
+    }
+</script>
+
+</body>
+</html>
