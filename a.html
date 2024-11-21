@@ -5,71 +5,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>For Rutu <3</title>
 <style>
-    @media screen and (max-width: 768px) { /* For devices with screen width 768px or less */
-    .side-image {
-        right: 10px; /* Move closer to the edge */
-        width: 150px; /* Reduce the size of the image */
-    }
-
-    .container {
-        width: 90%; /* Make the main container take up more width */
-        padding: 10px; /* Reduce padding */
-    }
-}
-
-@media screen and (max-width: 480px) { /* For very small devices like iPhone SE */
-    .side-image {
-        display: none; /* Hide the side image */
-    }
-
-    .container {
-        width: 95%; /* Maximize the width for the content */
-        padding: 10px;
-    }
-
-    #countdown {
-        font-size: 20px; /* Reduce font size for countdown */
-    }
-
-    h1 {
-        font-size: 1.8rem; /* Adjust heading size */
-    }
-}
-
     /* General Body Styling */
     body {
-    font-family: 'Poppins', sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh; /* Ensure full-screen height for content */
-    background: linear-gradient(to bottom, #ff9a9e, #fad0c4);
-    color: #4A4A4A;
-    overflow-y: auto; /* Enable vertical scrolling */
-    position: relative;
-    cursor: url('https://cdn-icons-png.flaticon.com/512/833/833472.png') 16 16, auto; /* Heart-shaped pointer */
-}
-/* Tiny hearts */
-.heart {
-    position: absolute;
-    font-size: 16px;
-    color: pink;
-    animation: fadeOut 1.5s ease forwards;
-    pointer-events: none;
-}
-
-@keyframes fadeOut {
-    0% {
-        opacity: 1;
-        transform: scale(1) translateY(0);
+        font-family: 'Poppins', sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: linear-gradient(to bottom, #ff9a9e, #fad0c4);
+        color: #4A4A4A;
+        overflow: hidden;
+        position: relative;
+        cursor: url('https://cdn-icons-png.flaticon.com/512/833/833472.png') 16 16, auto; /* Heart-shaped pointer */
     }
-    100% {
-        opacity: 0;
-        transform: scale(0.5) translateY(-20px);
-    }
-}
 
     .container {
         text-align: center;
@@ -146,69 +96,6 @@
         background: #ffd6d6;
     }
 
-    /* Style for the right-side image */
-    .side-image {
-        position: absolute;
-        top: 50%;
-        right: 50px; /* Moved slightly left from the edge */
-        transform: translateY(-50%);
-        width: 200px;
-        height: auto;
-        opacity: 0.8;
-        z-index: 1; /* Ensure it appears above the background */
-        transition: transform 0.3s ease, opacity 0.3s ease;
-    }
-
-    .side-image:hover {
-        transform: translateY(-50%) scale(1.2); /* Magnify on hover */
-        opacity: 1;
-    }
-
-    /* Adding hearts to the corners */
-    .hearts::before,
-    .hearts::after {
-        content: "❤️";
-        font-size: 40px;
-        position: absolute;
-        z-index: 0;
-        animation: float 4s infinite;
-    }
-
-    .hearts::before {
-        top: 20px;
-        left: 20px;
-    }
-
-    .hearts::after {
-        top: 20px;
-        right: 20px;
-    }
-/* Anniversary heading styling */
-.anniversary-heading {
-    font-family: 'Great Vibes', cursive; /* Decorative font */
-    font-size: 3rem;
-    color: #FF69B4; /* Romantic pink color */
-    z-index: 10;
-}
-
-    .hearts-bottom::before,
-    .hearts-bottom::after {
-        content: "❤️";
-        font-size: 40px;
-        position: absolute;
-        z-index: 0;
-        animation: float 4s infinite alternate;
-    }
-
-    .hearts-bottom::before {
-        bottom: 20px;
-        left: 20px;
-    }
-
-    .hearts-bottom::after {
-        bottom: 20px;
-        right: 20px;
-    }
     /* Tiny hearts */
     .heart {
         position: absolute;
@@ -228,28 +115,10 @@
             transform: scale(0.5) translateY(-20px);
         }
     }
-
-    @keyframes float {
-        0% {
-            transform: translateY(0);
-        }
-        50% {
-            transform: translateY(-10px);
-        }
-        100% {
-            transform: translateY(0);
-        }
-    }
 </style>
 </head>
 <body>
-<div class="hearts"></div>
-<div class="hearts-bottom"></div>
-
 <div class="container">
-    <h1 class="anniversary-heading" >Happy Anniversary My Love <3</h1>
-    <!-- align this div class -->
-
     <h1>Countdown till pookie's birthday 🥰</h1>
     <div id="countdown"></div>
     <select id="qualitySelect">
@@ -304,8 +173,22 @@
 
     setInterval(updateCountdown, 1000);
 
+    // Heart trail logic
+    document.addEventListener("mousemove", (e) => {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.style.left = `${e.pageX}px`;
+        heart.style.top = `${e.pageY}px`;
+        heart.innerText = "❤️";
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 1500); // Remove the heart after animation
+    });
+
     // Image slideshow logic
-    const imageList = ["rutu.jpeg", "rutu1.jpeg", "rutu2.jpeg", "rutu3.jpeg", "rutu5.png", "rutu.jpg"];
+    const imageList = ["rutu.jpeg", "rutu1.jpeg", "rutu2.jpeg", "rutu3.jpeg", "rutu.jpg"];
     let currentImageIndex = 0;
     let slideshowInterval; // Store reference to the interval
 
@@ -323,19 +206,6 @@
             slideshowInterval = null; // Reset the reference
         }
     }
-// Heart trail logic
-document.addEventListener("mousemove", (e) => {
-    const heart = document.createElement("div");
-    heart.classList.add("heart");
-    heart.style.left = `${e.pageX}px`;
-    heart.style.top = `${e.pageY}px`;
-    heart.innerText = "❤️";
-    document.body.appendChild(heart);
-
-    setTimeout(() => {
-        heart.remove();
-    }, 1500); // Remove the heart after animation
-});
 
     // Dropdown change event
     qualitySelect.addEventListener("change", function () {
