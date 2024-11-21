@@ -173,6 +173,22 @@
         z-index: 0;
         animation: float 4s infinite;
     }
+    .left-image {
+    position: absolute;
+    top: 50%; /* Align vertically in the middle */
+    left: 50px; /* Position it slightly away from the left edge */
+    transform: translateY(-50%); /* Center vertically */
+    width: 300px; /* Adjust size */
+    height: 500px; /* Maintain aspect ratio */
+    opacity: 0.8; /* Slight transparency */
+    z-index: 1; /* Ensure it appears above the background */
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.left-image:hover {
+    transform: translateY(-50%) scale(1.2); /* Magnify on hover */
+    opacity: 1; /* Make fully opaque on hover */
+}
 
     .hearts::before {
         top: 20px;
@@ -272,6 +288,8 @@
         </h1>
     </div>
 </div>
+<!-- Left-side image -->
+<img src="image1.png" alt="Left Side Image" class="left-image">
 
 <!-- Right-side image -->
 <img src="image.png" alt="Side Image" class="side-image">
